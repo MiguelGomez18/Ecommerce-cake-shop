@@ -43,15 +43,18 @@ public class Vista_clientes {
         return JOptionPane.showInputDialog("Digita la contraseña");
     }
 
-    public int obtenerTelefono(){
-        return Integer.parseInt(JOptionPane.showInputDialog("Digita el numero de telefono"));
+    public String obtenerTelefono(){
+        return JOptionPane.showInputDialog("Digita el numero de telefono");
     }
     public String obtenerDireccion(){
         return JOptionPane.showInputDialog("Digita la direccion").toLowerCase();
     }
 
     public String obtenerEstado(){
-        return JOptionPane.showInputDialog("Digita el estado (Habilitado/desabilitado)").toUpperCase();
+        String[] opciones = {"Habilitado", "Deshabilitado"};
+        int opcionSeleccionada = JOptionPane.showOptionDialog(null, "Selecciona el nuevo estado:", "Cambiar Estado", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
+        String nuevoEstado = opciones[opcionSeleccionada];
+        return nuevoEstado;
     }
 
 }

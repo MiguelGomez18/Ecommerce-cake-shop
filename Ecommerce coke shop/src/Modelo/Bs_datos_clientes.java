@@ -51,24 +51,35 @@ public class Bs_datos_clientes {
         return mensaje;
     }
 
-    public String registrarClientes(Clientes p){
+    public String registrarClientes(Clientes p) {
         this.leerJson();
 
         String texto = "";
         boolean valido = false;
-        for (int i : listaClientes.keySet()) {
-            int codigo = listaClientes.get(i).getCodigo();
-            int documento = listaClientes.get(i).getDocumento();
-            if (codigo == p.getCodigo() || documento == p.getDocumento()) {
+
+        for (Clientes cliente : listaClientes.values()) {
+            if (cliente.getCodigo() == p.getCodigo() || cliente.getDocumento() == p.getDocumento()) {
                 valido = true;
                 texto = "Esta persona ya se encuentra registrada";
+                return texto;
             }
         }
-        if (!valido) {
-            listaClientes.put(p.getCodigo(), p);
-            texto = "se agrego correctamente";
+
+        String numero = "";
+        while (!valido) {
+            numero = JOptionPane.showInputDialog("Ingrese el numero de telefono (deben ser 10 dígitos):");
+            if (numero.length() == 10) {
+                valido = true;
+            } else {
+                JOptionPane.showMessageDialog(null, "El numero de telefono debe contener exactamente 10 caracteres");
+            }
         }
-        escribirJson();
+
+        p.setTelefono(numero);
+        listaClientes.put(p.getCodigo(), p);
+        texto = "Se agrego correctamente";
+
+        this.escribirJson();
         return texto;
     }
 
@@ -125,7 +136,7 @@ public class Bs_datos_clientes {
         return mensaje;
     }
 
-    public void modificar(int documentoNuevo,String nombrenuevo,String apellidonuevo,String correoNuevo,String contrasenaNuevo,String estadoNuevo,int telefonoNuevo,String direcionNuevo){
+    public void modificar(int documentoNuevo,String nombrenuevo,String apellidonuevo,String correoNuevo,String contrasenaNuevo,String estadoNuevo,String telefonoNuevo,String direcionNuevo){
         leerJson();
         for (int i : listaClientes.keySet()){
             int obtenerDocumento=listaClientes.get(i).getDocumento();
@@ -144,8 +155,26 @@ public class Bs_datos_clientes {
         escribirJson();
     }
 
+    public String validarCodigoEstado(int codigo){
+        leerJson();
+        String mensaje="";
+        if (listaClientes.containsKey(codigo)){
+            mensaje="si";
+        } else {
+            mensaje="no";
+        }
 
+        return mensaje;
+    }
 
+    public String cambiarEstado(int codigo,String nuevoEstado) {
+        leerJson();
 
+        if (listaClientes.containsKey(codigo)) {
+            listaClientes.get(codigo).setEstado(nuevoEstado);
+        }
+        escribirJson();
+        return "Es estado del cliente ha sido cambiado correctamenet";
+    }
 
 }

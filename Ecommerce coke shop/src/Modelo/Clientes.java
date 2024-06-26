@@ -7,26 +7,14 @@ public class Clientes {
     private String apellido;
     private String correo;
     private String contrasena;
-    private int telefono;
+    private String telefono;
     private String direccion;
     private String estado;
 
     public Clientes() {
     }
 
-    public Clientes(int codigo, int documento, String nombre, String apellido, String correo, String contrasena, int telefono, String direccion,String estado) {
-        this.codigo = codigo;
-        this.documento = documento;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.correo = correo;
-        this.contrasena = contrasena;
-        this.telefono = telefono;
-        this.direccion = direccion;
-        this.estado = estado;
-    }
-
-    public Clientes(int codigo, int documento, String nombre, String apellido, String correo, String contrasena,String estado, int telefono, String direccion) {
+    public Clientes(int codigo, int documento, String nombre, String apellido, String correo, String contrasena, String telefono, String direccion,String estado) {
         this.codigo = codigo;
         this.documento = documento;
         this.nombre = nombre;
@@ -86,11 +74,11 @@ public class Clientes {
         this.contrasena = contrasena;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
@@ -109,6 +97,7 @@ public class Clientes {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
 
     @Override
     public String toString() {

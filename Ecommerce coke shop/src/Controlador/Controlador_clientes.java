@@ -26,7 +26,7 @@ public class Controlador_clientes {
                     String apellido = vista_clientes.obtenerApellido();
                     String correo = vista_clientes.obtenerCorreo();
                     String contrasena = vista_clientes.obtenerContrasena();
-                    int telefono = vista_clientes.obtenerTelefono();
+                    String telefono = vista_clientes.obtenerTelefono();
                     String direccion = vista_clientes.obtenerDireccion();
 
                     Clientes clientes1 = new Clientes(codigo,documento,nombre,apellido,correo,contrasena,telefono,direccion,"HABILITADO");
@@ -62,13 +62,25 @@ public class Controlador_clientes {
                         String correoNuevo = vista_clientes.obtenerCorreo();
                         String contrasenaNuevo = vista_clientes.obtenerContrasena();
                         String estadoNuevo = vista_clientes.obtenerEstado();
-                        int telefonoNuevo = vista_clientes.obtenerTelefono();
+                        String telefonoNuevo = vista_clientes.obtenerTelefono();
                         String direccionNuevo = vista_clientes.obtenerDireccion();
 
                         bs_datos_clientes.modificar(documentoModificar,nombreNuevo,apellidoNuevo,correoNuevo,contrasenaNuevo,estadoNuevo,telefonoNuevo,direccionNuevo);
 
                     } else {
                         vista_clientes.imprimir("Documento no encontrado");
+                    }
+                    break;
+                case 5:
+                    int codigoHabilitar=vista_clientes.obtenerCodigo();
+                    String validarCodigoHabilitar = bs_datos_clientes.validarCodigoEstado(codigoHabilitar);
+
+                    if (validarCodigoHabilitar.equals("si")){
+                        String estado = vista_clientes.obtenerEstado();
+                        vista_clientes.imprimir(bs_datos_clientes.cambiarEstado(codigoHabilitar,estado));
+
+                    } else {
+                        vista_clientes.imprimir("Codigo no encontrado");
                     }
                     break;
 
