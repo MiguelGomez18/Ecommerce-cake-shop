@@ -2,6 +2,7 @@ package Modelo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Pedido {
     private String destinatario;
@@ -82,6 +83,8 @@ public class Pedido {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+
 
     @Override
     public String toString() {
